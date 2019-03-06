@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'favoriteWidget.dart';
+import 'tWidgets/stateways/selfmanage.dart';
+import 'tWidgets/stateways/parentmanage.dart';
+import 'tWidgets/stateways/mixmatch.dart';
 
 void main() => runApp(MyApp());
 
@@ -74,7 +77,18 @@ class MyApp extends StatelessWidget {
                   width: 600, height: 240, fit: BoxFit.cover),
               titleSection,
               buttonSection,
-              textSection
+              textSection,
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    TapboxA(),
+                    ParentWidget(),
+                    MixParentWidget()
+                  ],
+                ),
+                margin: EdgeInsets.all(10)
+              )
             ],
           ),
         ));
