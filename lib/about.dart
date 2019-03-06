@@ -11,6 +11,7 @@ class AboutRoute extends StatelessWidget {
         child: RaisedButton(
           onPressed: () {
             Navigator.pop(context);
+            // Navigator.pushNamed(context, '/');
           },
           child: Text('Go back!'),
         ),
