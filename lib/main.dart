@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
 import 'about.dart';
+import 'todolist/TodosScreen.dart';
+import 'todolist/Todo.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,6 +18,12 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => HomeWidget(),
+          '/todos': (context) => TodosScreen(
+                todos: List.generate(
+                    20,
+                    (i) => Todo('Todo $i',
+                        'A description of what needs to be done for Todo $i')),
+              ),
           '/about': (context) => AboutRoute()
         });
   }

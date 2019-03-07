@@ -27,6 +27,12 @@ class AboutRoute extends StatelessWidget {
                     _navigateAndDisplaySelection(context);
                   },
                   child: Text('Open Question!'),
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/todos');
+                  },
+                  child: Text('Open Todo List'),
                 )
               ],
             ),
