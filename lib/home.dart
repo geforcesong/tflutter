@@ -35,39 +35,35 @@ class HomeWidget extends StatelessWidget {
         title: Text("This is my home"),
       ),
       body: Center(
-        child: RaisedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: ListView(
-              children: <Widget>[
-                Image.asset('images/lake.jpg',
-                    width: 600, height: 240, fit: BoxFit.cover),
-                titleSection,
-                buttonSection,
-                textSection,
-                Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        TapboxA(),
-                        ParentWidget(),
-                        MixParentWidget()
-                      ],
-                    ),
-                    margin: EdgeInsets.all(10)),
-                RaisedButton(
-                  child: Text('Open About'),
-                  onPressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => AboutRoute()),
-                    // );
-                    Navigator.pushNamed(context, '/about');
-                  },
-                )
-              ],
-            )),
+        child: ListView(
+          children: <Widget>[
+            Image.asset('images/lake.jpg',
+                width: 600, height: 240, fit: BoxFit.cover),
+            titleSection,
+            buttonSection,
+            textSection,
+            Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    TapboxA(),
+                    ParentWidget(),
+                    MixParentWidget()
+                  ],
+                ),
+                margin: EdgeInsets.all(10)),
+            RaisedButton(
+              child: Text('Open About'),
+              onPressed: () {
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => AboutRoute()),
+                // );
+                Navigator.pushNamed(context, '/about');
+              },
+            )
+          ],
+        ),
       ),
     );
   }
