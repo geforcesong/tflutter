@@ -3,6 +3,7 @@ import 'favoriteWidget.dart';
 import 'tWidgets/stateways/selfmanage.dart';
 import 'tWidgets/stateways/parentmanage.dart';
 import 'tWidgets/stateways/mixmatch.dart';
+import 'BatteryChecker.dart';
 
 class HomeWidget extends StatelessWidget {
   @override
@@ -51,7 +52,8 @@ class HomeWidget extends StatelessWidget {
                     MixParentWidget()
                   ],
                 ),
-                margin: EdgeInsets.all(10))
+                margin: EdgeInsets.all(10)),
+            BatteryChecker()
           ],
         ),
       ),
@@ -92,10 +94,11 @@ class HomeWidget extends StatelessWidget {
     ),
   );
 
-  GestureDetector _buildButtonColumn(Color color, IconData icon, String label, [BuildContext context, String path]) {
+  GestureDetector _buildButtonColumn(Color color, IconData icon, String label,
+      [BuildContext context, String path]) {
     return GestureDetector(
         onTap: () {
-          if(context !=null && path != null){
+          if (context != null && path != null) {
             Navigator.pushNamed(context, path);
           }
         },
