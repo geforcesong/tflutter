@@ -8,6 +8,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'shopper/models/CartModel.dart';
 import 'shopper/screens/Catalog.dart';
 import 'shopper/screens/Cart.dart';
+import 'scopem/CounterApp.dart';
 
 void main() {
   final cart = CartModel();
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
           '/about': (context) => AboutRoute(),
           '/login': (context) => LoginScreen(),
           '/catalog': (context) => MyCatalog(),
+          '/counterapp': (context) => CounterApp(),
         '/cart': (context) => MyCart()
         });
   }

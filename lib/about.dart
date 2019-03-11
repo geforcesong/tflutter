@@ -33,6 +33,12 @@ class AboutRoute extends StatelessWidget {
                     Navigator.pushNamed(context, '/todos');
                   },
                   child: Text('Open Todo List'),
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/counterapp');
+                  },
+                  child: Text('Open Counter app'),
                 )
               ],
             ),
