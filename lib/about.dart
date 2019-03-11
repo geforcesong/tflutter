@@ -39,6 +39,12 @@ class AboutRoute extends StatelessWidget {
                     Navigator.pushNamed(context, '/counterapp');
                   },
                   child: Text('Open Counter app'),
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/mapp');
+                  },
+                  child: Text('MAPP'),
                 )
               ],
             ),
