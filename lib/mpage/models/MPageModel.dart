@@ -1,7 +1,7 @@
 import 'package:scoped_model/scoped_model.dart';
 import '../factories/PropertyFactory.dart';
 
-class Listing {
+class Property {
   String address;
   String id;
 
@@ -13,7 +13,9 @@ class Listing {
 }
 
 class MPageModel extends Model {
-  List<Listing> _listings = new List<Listing>();
+  List<Property> listings = new List<Property>();
+
+  int get listingCount => listings.length;
 
   loadData() async {
     var propertyFactory = new PropertyFactory();
@@ -21,14 +23,14 @@ class MPageModel extends Model {
     if (resp != null &&
         resp["data"] != null &&
         resp["data"]["listings"] != null) {
-      var listings = resp["data"]["listings"];
-      for (var i = 0; i < listings.length; i++) {
-        Listing lst = new Listing();
-        lst.address = listings[i]["address"];
-        lst.id = listings[i]["id"];
-        print(lst.toString());
-        _listings.add(lst);
+      var respListings = resp["data"]["listings"];
+      for (var i = 0; i < respListings.length; i++) {
+        Property property = new Property();
+        property.address = respListings[i]["address"];
+        property.id = respListings[i]["id"];
+        listings.add(property);
       }
+      notifyListeners();
     }
   }
 }
