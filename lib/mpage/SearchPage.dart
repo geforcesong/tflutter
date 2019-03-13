@@ -25,7 +25,6 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var modal = ScopedModel.of<MPageModel>(context);
     this.pageModel = modal;
-    modal.loadData();
     return Scaffold(
         appBar: AppBar(
           title: new Text(this.title),

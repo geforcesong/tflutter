@@ -3,15 +3,28 @@ import 'package:scoped_model/scoped_model.dart';
 import 'models/MPageModel.dart';
 import 'SearchPage.dart';
 
-class MApp extends StatelessWidget {
+class MApp extends StatefulWidget {
   @override
-  Widget build(BuildContext context){
+  MAppState createState() => new MAppState();
+}
+
+class MAppState extends State<MApp> {
+  MPageModel _model = new MPageModel();
+
+  @override
+  void initState() {
+    super.initState();
+    _model.loadData();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return ScopedModel<MPageModel>(
-      model: MPageModel(),
+      model: _model,
       child: MaterialApp(
         title: 'Flutter Scope Demo',
-        home: SearchPage('This is search page')
-      ),
+        home: SearchPage('Search page')
+      )
     );
   }
 }
