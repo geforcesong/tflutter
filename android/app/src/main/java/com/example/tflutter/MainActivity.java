@@ -27,7 +27,7 @@ public class MainActivity extends FlutterActivity {
           public void onMethodCall(MethodCall call, MethodChannel.Result result) {
             if (call.method.equals("getBatteryLevel")) {
                 int batteryLevel = getBatteryLevel();
-        
+              
                 if (batteryLevel != -1) {
                     result.success(batteryLevel);
                 } else {
