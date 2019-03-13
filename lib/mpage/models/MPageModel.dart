@@ -1,10 +1,12 @@
 import 'package:scoped_model/scoped_model.dart';
 import '../factories/PropertyFactory.dart';
 import 'Property.dart';
+
 class MPageModel extends Model {
   List<Property> listings = new List<Property>();
   int _pageIndex = 0;
   int _totalPages = -1;
+  bool isloadingData = false;
 
   int get listingCount => listings.length;
 
@@ -13,8 +15,11 @@ class MPageModel extends Model {
     if (_totalPages > 0 && _pageIndex >= _totalPages) {
       return;
     }
+    isloadingData = true;
+    notifyListeners();
     var propertyFactory = new PropertyFactory();
     var resp = await propertyFactory.searchListings(_pageIndex);
+    isloadingData = false;
     if (resp != null &&
         resp["data"] != null &&
         resp["data"]["listings"] != null) {
@@ -34,7 +39,7 @@ class MPageModel extends Model {
         property.priceRaw = respListings[i]["priceRaw"];
         listings.add(property);
       }
-      notifyListeners();
     }
+    notifyListeners();
   }
 }
