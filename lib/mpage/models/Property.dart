@@ -6,6 +6,8 @@ class Property {
   String city;
   String state;
   String zipCode;
+  String price;
+  int priceRaw;
 
   @override
   String toString() {

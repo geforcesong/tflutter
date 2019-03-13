@@ -30,6 +30,8 @@ class MPageModel extends Model {
         property.state = respListings[i]["state"];
         property.fullAddress = respListings[i]["fullAddress"];
         property.tnImgPath = respListings[i]["tnImgPath"];
+        property.price = respListings[i]["price"];
+        property.priceRaw = respListings[i]["priceRaw"];
         listings.add(property);
       }
       notifyListeners();

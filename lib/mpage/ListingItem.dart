@@ -12,9 +12,27 @@ class ListingItem extends StatelessWidget {
     if (this._model == null) {
       return null;
     }
-    return Row(children: <Widget>[
-      Text(_index.toString() + ' +++ '),
-      Text(_model.address)
-    ]);
+    return new Container(
+        decoration: new BoxDecoration(
+            image: new DecorationImage(
+          image: new NetworkImage(this._model.tnImgPath),
+          fit: BoxFit.cover,
+        )),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+          Text(
+            _model.price,
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),
+          ),
+          Text(
+            _model.fullAddress,
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          )
+        ]),
+        height: 250);
   }
 }
