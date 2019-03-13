@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'models/MPageModel.dart';
-
+import 'ListingItem.dart';
 class SearchPage extends StatelessWidget {
   String title;
   MPageModel pageModel;
@@ -38,10 +38,7 @@ class SearchPage extends StatelessWidget {
             controller: _scrollController,
               itemCount: model.listingCount,
               itemBuilder: (BuildContext context, int index) {
-                return Row(
-                    children: <Widget>[
-                      Text(index.toString() + ' --- '),
-                      Text(model.listings[index].address)]);
+                return ListingItem(model.listings[index], index);
               });
         }));
   }
