@@ -7,10 +7,16 @@ class MPageModel extends Model {
   int _pageIndex = 0;
   int _totalPages = -1;
   bool isloadingData = false;
-
+  String _areaInput;
   int get listingCount => listings.length;
 
-  loadData() async {
+  loadData({String input = 'San Jose CA'}) async {
+    if (input != _areaInput) {
+      _pageIndex = 0;
+      _totalPages = -1;
+      _areaInput = input;
+      listings.clear();
+    }
     _pageIndex++;
     if (_totalPages > 0 && _pageIndex >= _totalPages) {
       return;
@@ -18,7 +24,7 @@ class MPageModel extends Model {
     isloadingData = true;
     notifyListeners();
     var propertyFactory = new PropertyFactory();
-    var resp = await propertyFactory.searchListings(_pageIndex);
+    var resp = await propertyFactory.searchListings(_areaInput, _pageIndex);
     isloadingData = false;
     if (resp != null &&
         resp["data"] != null &&

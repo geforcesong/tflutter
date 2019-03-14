@@ -7,6 +7,8 @@ class SearchPage extends StatelessWidget {
   String title;
   MPageModel pageModel;
   ScrollController _scrollController = new ScrollController();
+  final _inputTextController = new TextEditingController();
+  final _focusNode = FocusNode();
 
   SearchPage(String title) {
     this.title = title;
@@ -18,6 +20,11 @@ class SearchPage extends StatelessWidget {
           pageModel.loadData();
         }
       }
+    });
+
+    _focusNode.addListener(() {
+        _inputTextController.selection = TextSelection(
+            baseOffset: 0, extentOffset: _inputTextController.text.length);
     });
   }
 
@@ -42,11 +49,14 @@ class SearchPage extends StatelessWidget {
                     children: <Widget>[
                       Expanded(
                           child: TextField(
-                        decoration:
-                            InputDecoration(hintText: "Please input area",
-                            contentPadding: const EdgeInsets.symmetric(vertical: 15.5)),
+                        focusNode: _focusNode,
+                        decoration: InputDecoration(
+                            hintText: "Please input area",
+                            contentPadding:
+                                const EdgeInsets.symmetric(vertical: 15.5)),
                         maxLines: 1,
                         keyboardType: TextInputType.text,
+                        controller: _inputTextController,
                       )),
                       Container(
                           width: 50,
@@ -56,7 +66,10 @@ class SearchPage extends StatelessWidget {
                               iconSize: 30,
                               icon: Icon(Icons.search),
                               color: Colors.white,
-                              onPressed: () {}))
+                              onPressed: () {
+                                pageModel.loadData(
+                                    input: _inputTextController.text);
+                              }))
                     ]),
                 Flexible(
                     child: Stack(children: <Widget>[
