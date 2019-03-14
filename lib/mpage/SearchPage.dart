@@ -31,19 +31,34 @@ class SearchPage extends StatelessWidget {
         ),
         body:
             ScopedModelDescendant<MPageModel>(builder: (context, child, model) {
-          return Stack(children: <Widget>[
-            modal.listingCount > 0
-                ? ListView.builder(
-                    controller: _scrollController,
-                    itemCount: model.listingCount,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ListingItem(model.listings[index], index);
-                    })
-                : Container(),
-            Visibility(
-                child: Center(child: CircularProgressIndicator()),
-                visible: model.isloadingData)
-          ]);
+          return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      Text("abc"),
+                      IconButton(icon: Icon(Icons.search), onPressed: () {})
+                    ]),
+                Flexible(
+                    child: Stack(children: <Widget>[
+                  modal.listingCount > 0
+                      ? ListView.builder(
+                          controller: _scrollController,
+                          shrinkWrap: true,
+                          itemCount: model.listingCount,
+                          itemBuilder: (BuildContext context, int index) {
+                            return ListingItem(model.listings[index], index);
+                          })
+                      : Container(),
+                  Visibility(
+                      child: Center(child: CircularProgressIndicator()),
+                      visible: model.isloadingData)
+                ]))
+              ]);
         }));
   }
 }
