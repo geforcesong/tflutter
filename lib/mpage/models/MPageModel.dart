@@ -9,6 +9,7 @@ class MPageModel extends Model {
   bool isloadingData = false;
   String _areaInput;
   int get listingCount => listings.length;
+  String get areaInput => _areaInput;
 
   loadData({String input = 'San Jose CA'}) async {
     if (input != _areaInput) {

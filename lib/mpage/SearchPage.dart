@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'models/MPageModel.dart';
 import 'ListingItem.dart';
+import 'package:flutter/services.dart';
 
 class SearchPage extends StatelessWidget {
   String title;
@@ -23,8 +24,8 @@ class SearchPage extends StatelessWidget {
     });
 
     _focusNode.addListener(() {
-        _inputTextController.selection = TextSelection(
-            baseOffset: 0, extentOffset: _inputTextController.text.length);
+        // _inputTextController.selection = TextSelection(
+        //     baseOffset: 0, extentOffset: _inputTextController.text.length);
     });
   }
 
@@ -32,6 +33,7 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var modal = ScopedModel.of<MPageModel>(context);
     this.pageModel = modal;
+    _inputTextController.text = modal.areaInput;
     return Scaffold(
         appBar: AppBar(
           title: new Text(this.title),
@@ -56,7 +58,7 @@ class SearchPage extends StatelessWidget {
                                 const EdgeInsets.symmetric(vertical: 15.5)),
                         maxLines: 1,
                         keyboardType: TextInputType.text,
-                        controller: _inputTextController,
+                        controller: _inputTextController
                       )),
                       Container(
                           width: 50,
@@ -67,6 +69,8 @@ class SearchPage extends StatelessWidget {
                               icon: Icon(Icons.search),
                               color: Colors.white,
                               onPressed: () {
+                                SystemChannels.textInput.invokeMethod('TextInput.hide');
+                                FocusScope.of(context).requestFocus(new FocusNode());
                                 pageModel.loadData(
                                     input: _inputTextController.text);
                               }))
