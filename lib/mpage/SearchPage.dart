@@ -40,8 +40,23 @@ class SearchPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
-                      Text("abc"),
-                      IconButton(icon: Icon(Icons.search), onPressed: () {})
+                      Expanded(
+                          child: TextField(
+                        decoration:
+                            InputDecoration(hintText: "Please input area",
+                            contentPadding: const EdgeInsets.symmetric(vertical: 15.5)),
+                        maxLines: 1,
+                        keyboardType: TextInputType.text,
+                      )),
+                      Container(
+                          width: 50,
+                          height: 50,
+                          color: Colors.orange,
+                          child: IconButton(
+                              iconSize: 30,
+                              icon: Icon(Icons.search),
+                              color: Colors.white,
+                              onPressed: () {}))
                     ]),
                 Flexible(
                     child: Stack(children: <Widget>[
