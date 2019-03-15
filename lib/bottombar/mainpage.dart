@@ -51,7 +51,6 @@ class _MainPageState extends State<MainPage> {
   }
 
   void _onSelectTab(int index) {
-    print(index);
     switch (index) {
       case 0:
         _onLayoutSelected(LayoutType.page1);
