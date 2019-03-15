@@ -22,6 +22,10 @@ class Page1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _buildPageView();
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("This is bottom bar app"),
+        ),
+        body: _buildPageView());
   }
 }

@@ -16,9 +16,6 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("This is bottom bar app"),
-      ),
       body: _buildBody(),
       bottomNavigationBar: _buildBottomNavigationBar(),
     );
