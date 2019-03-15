@@ -10,6 +10,7 @@ import 'shopper/screens/Catalog.dart';
 import 'shopper/screens/Cart.dart';
 import 'scopem/CounterApp.dart';
 import 'mpage/mapp.dart';
+import 'screens/login_page.dart';
 
 void main() {
   final cart = CartModel();
@@ -53,7 +54,8 @@ class MyApp extends StatelessWidget {
           '/catalog': (context) => MyCatalog(),
           '/counterapp': (context) => CounterApp(),
           '/mapp': (context) => MApp(),
-        '/cart': (context) => MyCart()
+          '/cart': (context) => MyCart(),
+          '/logindemo': (context) => LoginPage()
         });
   }
 }

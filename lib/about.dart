@@ -45,6 +45,12 @@ class AboutRoute extends StatelessWidget {
                     Navigator.pushNamed(context, '/mapp');
                   },
                   child: Text('MAPP'),
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/logindemo');
+                  },
+                  child: Text('Login Demo'),
                 )
               ],
             ),
