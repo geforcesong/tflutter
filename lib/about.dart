@@ -1,7 +1,23 @@
 import 'package:flutter/material.dart';
 import 'SelectionScreen.dart';
 
+class NavigationLinkData {
+  String name;
+  String link;
+  NavigationLinkData(this.name, this.link);
+}
+
 class AboutRoute extends StatelessWidget {
+  List<NavigationLinkData> links = new List<NavigationLinkData>();
+
+  AboutRoute() {
+    links.add(new NavigationLinkData('Open Todo List', '/todos'));
+    links.add(new NavigationLinkData('Open Counter app', '/counterapp'));
+    links.add(new NavigationLinkData('Mapp', '/mapp'));
+    links.add(new NavigationLinkData('Login Demo', '/logindemo'));
+    links.add(new NavigationLinkData('Show Dialogue', 'showdialogue'));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,48 +29,26 @@ class AboutRoute extends StatelessWidget {
       body: Builder(
         builder: (BuildContext context) {
           return Center(
-            child: Column(
-              children: <Widget>[
-                RaisedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    // Navigator.pushNamed(context, '/');
-                  },
-                  child: Text('Go back!'),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    _navigateAndDisplaySelection(context);
-                  },
-                  child: Text('Open Question!'),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/todos');
-                  },
-                  child: Text('Open Todo List'),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/counterapp');
-                  },
-                  child: Text('Open Counter app'),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/mapp');
-                  },
-                  child: Text('MAPP'),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/logindemo');
-                  },
-                  child: Text('Login Demo'),
-                )
-              ],
-            ),
-          );
+              child: ListView.builder(
+            itemCount: links.length,
+            itemBuilder: (context, index) {
+              var item = links[index];
+              return Container(
+                  decoration: BoxDecoration(
+                      color: index % 2 == 0 ? Colors.white : Colors.yellow[100]),
+                  child: ListTile(
+                    title: Text(item.name),
+                    leading: Icon(Icons.ac_unit),
+                    onTap: () {
+                      if (item.link == 'showdialogue') {
+                        _navigateAndDisplaySelection(context);
+                      } else {
+                        Navigator.pushNamed(context, item.link);
+                      }
+                    },
+                  ));
+            },
+          ));
         },
       ),
     );
