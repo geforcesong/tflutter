@@ -8,7 +8,7 @@ class NavigationLinkData {
 }
 
 class AboutRoute extends StatelessWidget {
-  List<NavigationLinkData> links = new List<NavigationLinkData>();
+  final List<NavigationLinkData> links = new List<NavigationLinkData>();
 
   AboutRoute() {
     links.add(new NavigationLinkData('Open Todo List', '/todos'));
