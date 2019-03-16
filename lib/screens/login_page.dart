@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'auth.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
+enum PageStatus { Login, Create }
+
 class LoginPage extends StatefulWidget {
+  BathAuth _auth;
+  PageStatus _pageStatus = PageStatus.Login;
+
+  LoginPage(this._auth);
+
   @override
   State<StatefulWidget> createState() => new _LoginPageState();
 }
@@ -29,6 +37,8 @@ class _LoginPageState extends State<LoginPage> {
       // } catch (e) {
       //   print('Error: $e');
       // }
+      bool flag = widget._auth.loginWithEmailAndPassword(_email, _password);
+      print(flag);
     }
   }
 
@@ -43,26 +53,59 @@ class _LoginPageState extends State<LoginPage> {
           child: new Form(
               key: formKey,
               child: new Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  new TextFormField(
-                    decoration: new InputDecoration(labelText: 'Email'),
-                    validator: (value) =>
-                        value.isEmpty ? 'Email can\'t be empty' : null,
-                    onSaved: (value) => _email = value,
-                  ),
-                  new TextFormField(
-                      obscureText: true,
-                      validator: (value) =>
-                          value.isEmpty ? 'Password can\'t be empty' : null,
-                      decoration: new InputDecoration(labelText: 'Password'),
-                      onSaved: (value) => _password = value),
-                  new RaisedButton(
-                    child: new Text('Login', style: TextStyle(fontSize: 20)),
-                    onPressed: validateAndSubmit,
-                  )
-                ],
-              )),
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: _buildInputs() + _buildButtons())),
         ));
+  }
+
+  List<Widget> _buildInputs() {
+    return [
+      new TextFormField(
+        decoration: new InputDecoration(labelText: 'Email'),
+        validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
+        onSaved: (value) => _email = value,
+        textInputAction: TextInputAction.none,
+      ),
+      new TextFormField(
+          obscureText: true,
+          validator: (value) =>
+              value.isEmpty ? 'Password can\'t be empty' : null,
+          decoration: new InputDecoration(labelText: 'Password'),
+          onSaved: (value) => _password = value)
+    ];
+  }
+
+  List<Widget> _buildButtons() {
+    if (widget._pageStatus == PageStatus.Login) {
+      return [
+        new RaisedButton(
+          child: new Text('Login', style: TextStyle(fontSize: 20)),
+          onPressed: validateAndSubmit,
+        ),
+        new FlatButton(
+          child: Text('Create Account', style: TextStyle(fontSize: 20)),
+          onPressed: () => flatPressed(PageStatus.Create),
+        )
+      ];
+    } else {
+      return [
+        new RaisedButton(
+          child: new Text('Create Account', style: TextStyle(fontSize: 20)),
+          onPressed: validateAndSubmit,
+        ),
+        new FlatButton(
+          child: Text('Login', style: TextStyle(fontSize: 20)),
+          onPressed: () => flatPressed(PageStatus.Login),
+        )
+      ];
+    }
+  }
+
+  void flatPressed(PageStatus status) {
+    var form = formKey.currentState;
+    form.reset();
+    setState(() {
+      widget._pageStatus = status;
+    });
   }
 }
