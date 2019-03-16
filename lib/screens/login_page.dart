@@ -45,17 +45,21 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: new Text('Flutter login demo'),
-        ),
-        body: new Container(
+      appBar: AppBar(
+        title: new Text('Flutter login demo'),
+      ),
+      body: GestureDetector( child: Container(
           padding: EdgeInsets.all(16.0),
+          color: Colors.white,
           child: new Form(
               key: formKey,
               child: new Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: _buildInputs() + _buildButtons())),
-        ));
+                  children: _buildInputs() + _buildButtons()))),
+          onTap: (){
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+    ));
   }
 
   List<Widget> _buildInputs() {
@@ -64,10 +68,11 @@ class _LoginPageState extends State<LoginPage> {
         decoration: new InputDecoration(labelText: 'Email'),
         validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
         onSaved: (value) => _email = value,
-        textInputAction: TextInputAction.none,
+        maxLines: 1,
       ),
       new TextFormField(
           obscureText: true,
+          maxLines: 1,
           validator: (value) =>
               value.isEmpty ? 'Password can\'t be empty' : null,
           decoration: new InputDecoration(labelText: 'Password'),
