@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tflutter/screens/auth_provider.dart';
-import 'auth.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
 enum PageStatus { Login, Create }
