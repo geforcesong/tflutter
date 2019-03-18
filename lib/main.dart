@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tflutter/screens/auth_provider.dart';
 import 'home.dart';
 import 'about.dart';
 import 'todolist/TodosScreen.dart';
@@ -13,6 +14,8 @@ import 'mpage/mapp.dart';
 import 'screens/login_page.dart';
 import 'bottombar/mainpage.dart';
 import 'screens/auth.dart';
+import 'screens/login_home.dart';
+
 void main() {
   final cart = CartModel();
   runApp(ScopedModel<CartModel>(
@@ -56,7 +59,8 @@ class MyApp extends StatelessWidget {
           '/counterapp': (context) => CounterApp(),
           '/mapp': (context) => MApp(),
           '/cart': (context) => MyCart(),
-          '/logindemo': (context) => LoginPage(Auth()),
+          '/logindemo': (context) => AuthProvider(child: LoginPage(), auth: Auth()),
+          '/loginhome': (context) => LoginHome(),
           '/bottombar': (context) => MainPage()
         });
   }

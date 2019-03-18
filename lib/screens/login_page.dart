@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:tflutter/screens/auth_provider.dart';
 import 'auth.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
 enum PageStatus { Login, Create }
 
 class LoginPage extends StatefulWidget {
-  BathAuth _auth;
   PageStatus _pageStatus = PageStatus.Login;
 
-  LoginPage(this._auth);
+  LoginPage();
 
   @override
   State<StatefulWidget> createState() => new _LoginPageState();
@@ -30,15 +30,12 @@ class _LoginPageState extends State<LoginPage> {
 
   void validateAndSubmit() async {
     if (validateAndSave()) {
-      // try {
-      //   FirebaseUser user = await FirebaseAuth.instance
-      //       .signInWithEmailAndPassword(email: _email, password: _password);
-      //   print('Login: ${user.uid}');
-      // } catch (e) {
-      //   print('Error: $e');
-      // }
-      bool flag = widget._auth.loginWithEmailAndPassword(_email, _password);
+      var auth = AuthProvider.of(context).auth;
+      bool flag = auth.loginWithEmailAndPassword(_email, _password);
       print(flag);
+      if(flag){
+        Navigator.pushNamed(context, '/loginhome');
+      }
     }
   }
 
