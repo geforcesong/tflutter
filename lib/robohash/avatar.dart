@@ -30,7 +30,7 @@ class _Avartar extends State<Avartar> {
           return new Center(child: Text('Error'));
         } else{
           return Container(
-            padding: EdgeInsets.all(widget.size-50),
+            padding: EdgeInsets.all(widget.size-200),
             child: CircularProgressIndicator(),
           );
         }
