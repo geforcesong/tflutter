@@ -17,6 +17,7 @@ class AboutRoute extends StatelessWidget {
     links.add(new NavigationLinkData('Login Demo', '/logindemo'));
     links.add(new NavigationLinkData('Show Dialogue', 'showdialogue'));
     links.add(new NavigationLinkData('Bottom Bars', '/bottombar'));
+    links.add(new NavigationLinkData('Robohash Avatar', '/robohash'));
   }
 
   @override
