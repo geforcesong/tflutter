@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'avatar.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:typed_data';
 class AvatarPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _AvatarPage();
@@ -10,6 +11,12 @@ class _AvatarPage extends State<AvatarPage> {
   String _name;
   static final formKey = new GlobalKey<FormState>();
   FocusNode _focusNode = new FocusNode();
+  Future<Uint8List> imageData;
+
+  Future<Uint8List> fetchAvatar(url) async {
+    http.Response response = await http.get(url);
+    return response.bodyBytes;
+  }
 
   _clear() {
     final form =formKey.currentState;
@@ -22,8 +29,7 @@ class _AvatarPage extends State<AvatarPage> {
     var children = [_buildInputForm()];
 
     if (_name != null && _name.length > 0) {
-      var url = 'https://robohash.org/$_name';
-      var avatar = new Avartar(url: url, size: 250);
+      var avatar = new Avartar( size: 250, imageData: imageData,);
       children.addAll([
         new VerticalPadding(child: avatar),
         new VerticalPadding(child: Text('from robohash $_name'))
@@ -79,9 +85,12 @@ class _AvatarPage extends State<AvatarPage> {
 
   void _updateName(String name) {
     final form = formKey.currentState;
+    var url = 'https://robohash.org/$_name';
     if (form.validate()) {
       form.save();
-      setState(() {});
+      setState(() {
+        imageData = this.fetchAvatar(url);
+      });
       print("Saved: $_name");
     }
   }
