@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'gridviewlist.dart';
 class Page1 extends StatelessWidget {
   Widget _buildPage(int index, Color color) {
     return Container(
@@ -16,6 +16,7 @@ class Page1 extends StatelessWidget {
         _buildPage(2, Colors.blue),
         _buildPage(3, Colors.indigo),
         _buildPage(4, Colors.red),
+        ImageGridViewList()
       ],
     );
   }

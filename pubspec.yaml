@@ -55,6 +55,7 @@ flutter:
   - images/hero/simon-matzinger-320332-unsplash.jpg
   - images/hero/meng-ji-102492-unsplash.jpg
   - images/hero/brady-bellini-212790-unsplash.jpg
+  - images/samples/
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
