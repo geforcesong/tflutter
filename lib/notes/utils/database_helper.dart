@@ -32,9 +32,11 @@ class DatabaseHelper {
   }
 
   Future<Database> initialized() async {
-    // get the directory path for both ios and android
+    // get the directory path for both ios and androidget
+    // var databasesPath = await getDatabasesPath(); // - /data/user/0/com.example.tflutter/databases
     Directory directory = await getApplicationDocumentsDirectory();
-    String path = directory.path + 'notes.db';
+    String path = directory.path + 'notes.db'; // - /data/user/0/com.example.tflutter/app_flutter
+    print('path: $path');
     var noteDatebase = openDatabase(path, version: 1, onCreate: _createDb);
     return noteDatebase;
   }
