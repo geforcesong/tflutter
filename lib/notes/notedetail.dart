@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class NoteDetail extends StatefulWidget {
+  String title;
+
+  NoteDetail({this.title});
+
   @override
   State<StatefulWidget> createState() {
     return _NoteDetail();
@@ -18,7 +22,14 @@ class _NoteDetail extends State<NoteDetail> {
     TextStyle textStyle = Theme.of(context).textTheme.title;
 
     return Scaffold(
-      appBar: AppBar(title: Text('Edit Note')),
+      appBar: AppBar(title: Text(widget.title),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: (){
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Padding(
         padding: EdgeInsets.only(top: 15, left: 10, right: 10),
         child: ListView(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:tflutter/notes/notedetail.dart';
 
 class NoteList extends StatefulWidget {
   
@@ -12,9 +12,14 @@ class NoteList extends StatefulWidget {
 class _NoteList extends State<NoteList>{
   int count=0;
 
+  void navigateToDetail(String title){
+    Navigator.push(context, MaterialPageRoute(builder: (context){
+            return NoteDetail(title: title);
+          }));
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         title: Text('Notes')
@@ -22,7 +27,7 @@ class _NoteList extends State<NoteList>{
       body: getNoteListVie(),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          debugPrint('Float pressed');
+          navigateToDetail('Add Note');
         },
         tooltip: 'Add Note',
         child: Icon(Icons.add)
@@ -45,7 +50,7 @@ class _NoteList extends State<NoteList>{
             subtitle: Text('Dummy Date'),
             trailing: Icon(Icons.delete, color: Colors.grey,),
             onTap: (){
-              debugPrint('on tap');
+              navigateToDetail('Edit Note');
             },
           ),
         );
