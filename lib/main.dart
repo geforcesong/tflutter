@@ -16,6 +16,7 @@ import 'bottombar/mainpage.dart';
 import 'screens/auth.dart';
 import 'screens/login_home.dart';
 import 'robohash/roboMain.dart';
+import 'notes/notelist.dart';
 
 void main() {
   final cart = CartModel();
@@ -63,7 +64,8 @@ class MyApp extends StatelessWidget {
           '/logindemo': (context) => AuthProvider(child: LoginPage(), auth: Auth()),
           '/loginhome': (context) => LoginHome(),
           '/bottombar': (context) => MainPage(),
-          '/robohash': (context) => RoboMain()
+          '/robohash': (context) => RoboMain(),
+          '/notes': (context) => NoteList()
         });
   }
 }
