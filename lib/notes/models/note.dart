@@ -8,6 +8,14 @@ class Note {
   Note(this._title, this._date, this._priority, [this._description]);
   Note.withId(this._id, this._title, this._date, this._priority,
       [this._description]);
+      
+  Note.fromMapObject(Map<String, dynamic> map){
+    this._id = map['id'];
+    this._title = map['title'];
+    this._description = map['description'];
+    this._date = map['date'];
+    this._priority = map['priority'];
+  }
 
   int get id => _id;
   String get title => _title;
@@ -50,11 +58,5 @@ class Note {
     return map;
   }
 
-  Note.fromMapObject(Map<String, dynamic> map){
-    this._id = map['id'];
-    this._title = map['title'];
-    this._description = map['description'];
-    this._date = map['date'];
-    this._priority = map['priority'];
-  }
+  
 }
