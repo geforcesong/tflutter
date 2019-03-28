@@ -48,14 +48,14 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          '/': (context) => HomeWidget(),
+          '/home': (context) => HomeWidget(),
           '/todos': (context) => TodosScreen(
                 todos: List.generate(
                     20,
                     (i) => Todo('Todo $i',
                         'A description of what needs to be done for Todo $i')),
               ),
-          '/about': (context) => AboutRoute(),
+          '/': (context) => AboutRoute(),
           '/login': (context) => LoginScreen(),
           '/catalog': (context) => MyCatalog(),
           '/counterapp': (context) => CounterApp(),

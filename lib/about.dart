@@ -11,6 +11,7 @@ class AboutRoute extends StatelessWidget {
   final List<NavigationLinkData> links = new List<NavigationLinkData>();
 
   AboutRoute() {
+    links.add(new NavigationLinkData('Sample UI', '/home'));
     links.add(new NavigationLinkData('Open Todo List', '/todos'));
     links.add(new NavigationLinkData('Open Counter app', '/counterapp'));
     links.add(new NavigationLinkData('Mapp', '/mapp'));
