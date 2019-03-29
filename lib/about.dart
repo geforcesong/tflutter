@@ -20,6 +20,7 @@ class AboutRoute extends StatelessWidget {
     links.add(new NavigationLinkData('Bottom Bars', '/bottombar'));
     links.add(new NavigationLinkData('Robohash Avatar', '/robohash'));
     links.add(new NavigationLinkData('Notes App', '/notes'));
+    links.add(new NavigationLinkData('Band names', '/bandnames'));
   }
 
   @override
